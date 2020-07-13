@@ -1,0 +1,27 @@
+body {
+    background-color: lightgray;
+}
+.header {
+    text-align: center;
+}
+.header > p {
+    font-style: italic;
+}
+h2 {
+    text-align: center;
+}
+img {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+.biography > p {
+    text-indent: 50px;
+}
+ td, th {
+    border: 1px solid #aaa;
+    padding: 8px;
+}
+a {
+    color: chocolate;
+} 
