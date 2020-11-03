@@ -1,6 +1,9 @@
 const fs = require('fs');
 const model = require('./model_2.js');
 const fmt = require('./gen_dates.js');
+const tableHTML = require('./view5.js');
+const https = require('./run_server_6.js');
+
 
 const generateCsv = (array) => {
   let csv = 'Model;Year;USD;UAH\n';
@@ -35,7 +38,11 @@ model((result) => {
       throw 'invalid file name';
     }
     fs.writeFileSync(`${fname}.csv`, csv);
+    const tab = tableHTML(arr);
+    https(tab, `tesla_${fname}.csv`);
   } catch (err) {
     console.log('err', err);
   }
 });
+
+module.exports = generateCsv;
