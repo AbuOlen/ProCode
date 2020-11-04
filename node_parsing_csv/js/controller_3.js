@@ -1,8 +1,8 @@
 const fs = require('fs');
-const model = require('./model_2.js');
+const getData = require('./model_2.js');
 const fmt = require('./gen_dates.js');
 const tableHTML = require('./view5.js');
-const https = require('./run_server_6.js');
+const runServer = require('./run_server_6.js');
 
 
 const generateCsv = (array) => {
@@ -23,7 +23,7 @@ const generateCsv = (array) => {
 };
 
 let arr = [];
-model((result) => {
+getData((result) => {
   arr = result;
   try {
     if (arr.length === 0) {
@@ -37,9 +37,10 @@ model((result) => {
     if (fname === '') {
       throw 'invalid file name';
     }
-    fs.writeFileSync(`${fname}.csv`, csv);
+    const csvname = `tesla_${fname}.csv`;
+    fs.writeFileSync(csvname, csv, 'utf8');
     const tab = tableHTML(arr);
-    https(tab, `tesla_${fname}.csv`);
+    runServer(tab, csvname);
   } catch (err) {
     console.log('err', err);
   }
