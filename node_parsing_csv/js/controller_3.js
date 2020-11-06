@@ -2,7 +2,6 @@ const fs = require('fs');
 const getData = require('./model_2.js');
 const fmt = require('./gen_dates.js');
 const tableHTML = require('./view5.js');
-const runServer = require('./run_server_6.js');
 
 
 const generateCsv = (array) => {
@@ -22,28 +21,32 @@ const generateCsv = (array) => {
   return csv;
 };
 
-let arr = [];
-getData((result) => {
-  arr = result;
-  try {
-    if (arr.length === 0) {
-      throw 'array is empty';
-    }
-    if (arr[0].length !== 4) {
-      throw 'wrong column count';
-    }
-    const csv = generateCsv(arr);
-    const fname = fmt(new Date());
-    if (fname === '') {
-      throw 'invalid file name';
-    }
-    const csvname = `tesla_${fname}.csv`;
-    fs.writeFileSync(csvname, csv, 'utf8');
-    const tab = tableHTML(arr);
-    runServer(tab, csvname);
-  } catch (err) {
-    console.log('err', err);
-  }
-});
+const getContent = (cb) => {
+  getData((result) => {
+    try {
+      if (result.length === 0) {
+        throw 'array is empty';
+      }
+      if (result[0].length !== 4) {
+        throw 'wrong column count';
+      }
 
-module.exports = generateCsv;
+      const csv = generateCsv(result);
+      const fname = fmt(new Date());
+
+      if (fname === '') {
+        throw 'invalid file name';
+      }
+
+      const csvname = `tesla_${fname}.csv`;
+      fs.writeFileSync(csvname, csv, 'utf8');
+
+      const tab = tableHTML(result);
+      cb(tab, csvname);
+    } catch (err) {
+      console.log('err', err);
+    }
+  });
+};
+
+module.exports = getContent;
