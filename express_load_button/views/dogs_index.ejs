@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>dogs</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <script>
+      function getImage() {
+        window.location.href="dogs/load"; 
+      }
+  </script>
+  <body>
+      <% if(img_src === '') { %>
+        <a>Loading...</a>
+      <% } else { %>
+        <img src="<%= img_src %>"></img>
+    <% } %>
+    <button onclick="getImage()">Show img</button>
+  </body>
+</html>
