@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CARS</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+  <body>
+    <p>
+        <%= str %>
+    </p>
+    <% for (let i =0; i <links.length;  i++ ) { %>
+        <%if(idx === i) {%>
+            <a><%=links[i]%></a>
+        <% } else { %>
+            <a href="<%= `../pages/${links[i]}`%>"><%=links[i]%></a>
+        <% } %>   
+    <% } %>
+    
+  </body>
+</html>
