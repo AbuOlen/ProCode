@@ -6,11 +6,12 @@
   </head>
   
   <body>
+ 
       <% if(img_src === '') { %>
-        <a>Loading...</a>
+        <a><%= img_src_err %></a>
       <% } else { %>
         <img src="<%= img_src %>"></img>
     <% } %>
-  
+   
   </body>
 </html>
