@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  </head>
+  <body>
+    <div class = "main"> 
+      <textarea id="character" placeholder="id"
+      rows="1" cols="20"></textarea>
+  </div>
+  <div class="btnOk">OK</div>
+  <div class="name"><%= name%></div>
+  <div class="movie">
+    <% for (let i =0; i <movie.length;  i++ ) { %>
+          <a href="<%=`${movie[i]}`%>"><%=movie[i]%></a><br>
+    <% } %>   
+    </div>
+
+  </body>
+ 
+  <script>
+    let btn = document.querySelector('.btnOk');
+    let inpN = document.querySelector('.name');
+    let inpM = document.querySelector('.movie');
+    
+    btn.addEventListener('click', btnFunc = () => {
+      let str = document.getElementById('character').value;
+      console.log(str);
+      window.location.href=`/${str}`; 
+      });
+    </script>
+  
+  
+</html>
