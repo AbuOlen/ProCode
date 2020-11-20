@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  </head>
+  <body>
+    <div class = "main"> 
+      <textarea id="character" placeholder="id"
+      rows="1" cols="20"></textarea>
+  </div>
+  <div class="btnOk">OK</div>
+  <div class="name"><%= name%></div>
+  <div class="movie">
+  <table class="table">
+    <%if(typeof(movie_info) !== 'undefined') {%>
+      <% for (let i =0; i <movie_info.length;  i++ ) { %>
+        <tr>
+         <td>
+            <%= movie_info[i].title %>     
+         </td>
+         <td>
+          <%= movie_info[i].release %>     
+       </td>
+      <% } %>
+    <% } %>
+    </table>
+    </div>
+
+  </body>
+ 
+  <script>
+    let btn = document.querySelector('.btnOk');
+    let inpN = document.querySelector('.name');
+    let inpM = document.querySelector('.movie');
+    
+    btn.addEventListener('click', btnFunc = () => {
+      let str = document.getElementById('character').value;
+      console.log(str);
+      window.location.href=`/${str}`; 
+      });
+    </script>
+
+    <!-- <script>
+      function makeTableHTML(`${movie_info}`) {
+          let result = "<table border=1>";
+          for (let i = 0; i < `${movie_info}`.length; i++) {
+            result += "<tr>";
+            for (let j = 0; j < `${movie_info}`[i].length; j++) {
+              result += "<td>" + `${movie_info}`[i][j] + "</td>";
+            }
+            result += "</tr>";
+          }
+          result += "</table>";
+          return result;
+      };
+
+
+        document.querySelector(".main").innerHTML = makeTableHTML(arr);
+    </script> -->
+  
+</html>
