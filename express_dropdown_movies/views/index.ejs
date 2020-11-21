@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="dropdown">
+    <button class="dropbtn">Star Wars Movies</button>
+    <div class="dropdown-content">
+      <%if(typeof(results) !== 'undefined') {%>
+        <% for (let i =0; i <results.length;  i++ ) { %>
+          <a href="/<%=i%>"><%= results[i].title %> </a>
+        <% } %>
+      <% } %>
+    </div>
+  </div>
+
+  <% if(Number(loader) === true) {%>
+    <div class="loader"></div>
+  <% } %>
+
+  <ul class="list">
+    <% if(typeof(names) !== 'undefined') {%>
+      <% for (let i = 0; i <names.length;  i++ ) { %>
+        <li><%= names[i] %> </li>
+      <% } %>
+    <% } %>
+  </ul>
+
+
+</body>
+
+</html>
