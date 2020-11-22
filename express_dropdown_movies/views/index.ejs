@@ -3,25 +3,25 @@
 
 <head>
   <title></title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+  <link rel='stylesheet' href="/stylesheets/style.css" />
 </head>
 
 <body>
-  <div class="dropdown">
-    <button class="dropbtn">Star Wars Movies</button>
-    <div class="dropdown-content">
+  <div class="main">
+    <select id="movies">
       <%if(typeof(results) !== 'undefined') {%>
         <% for (let i =0; i <results.length;  i++ ) { %>
-          <a href="/<%=i%>"><%= results[i].title %> </a>
+          <option><%= results[i].title %></option>
         <% } %>
       <% } %>
-    </div>
+        </select>
+      <button type="button" class="btnOK">OK</button>
   </div>
 
-  <% if(Number(loader) === true) {%>
-    <div class="loader"></div>
-  <% } %>
-
+  <div class="loader" style="<%- loader_disp %>"><img src="/images/loader.gif" alt=""></div>
+  
   <ul class="list">
     <% if(typeof(names) !== 'undefined') {%>
       <% for (let i = 0; i <names.length;  i++ ) { %>
@@ -32,5 +32,6 @@
 
 
 </body>
+<script src='/javascripts/main.js'></script>
 
 </html>

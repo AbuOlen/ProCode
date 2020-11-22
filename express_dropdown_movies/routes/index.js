@@ -9,17 +9,18 @@ router.get("/", function (req, res) {
     .get("https://swapi.dev/api/films/")
     .then(function (res1) {
       options.results = res1.data.results;
-      options.loader = false;
+      options.loader_disp = "display: none";
       res.render("index", options);
+      options.loader_disp = "";
     })
     .catch((err) => {
       console.log("axios err", err);
     });
 });
 
-
 router.get("/:id", function (req, res) {
-  let chars = options.results[Number(req.params.id)].characters;
+  options.id = req.params.id;
+  let chars = options.results[Number(options.id)].characters;
   const characters = chars.map((el) => {
     return axios.get(el).catch((err) => {
       console.log("axios err", err);
@@ -32,10 +33,11 @@ router.get("/:id", function (req, res) {
         return n.data.name;
       });
       options.names = names;
-      options.loader = false;
-      console.table(names);
 
+      console.table(names);
+      options.loader_disp = "display: none";
       res.render("index", options);
+      options.loader_disp = "";
     })
     .catch((err) => {
       console.log("promise err", err);
