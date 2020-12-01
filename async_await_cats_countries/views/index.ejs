@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cards of Countries</title>
+  <link rel="icon" href="data:,">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Cards of Countries</h1>
+  <div class="main">
+    <div class="regions">
+      <label class="container">Europe
+        <input type="radio" name="radio" value="Europe">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Americas
+        <input type="radio" name="radio" value="Americas">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Asia
+        <input type="radio" name="radio" value="Asia">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Africa
+        <input type="radio" name="radio" value="Africa">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Oceania
+        <input type="radio" name="radio" value="Oceania">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+    <div class="countries">
+      <% if(typeof(countries) !== 'undefined') {%>
+      <% for (let i = 0; i <countries.length;  i++ ) { %>
+      <div class="card">
+        <div class="info_country">
+          <div class="name"><%= countries[i].name %></div>
+          <img src="<%= countries[i].flag %>">
+        </div>
+          <div class="cats">
+            <% if(typeof(countries[i].cats) !== 'undefined') {%>
+              <% for (let j = 0; j <countries[i].cats.length;  j++ ) { %>
+                <div class="photo_cat"><div class="name_cat"><%= countries[i].cats[j].name %></div>
+                  <img src="<%= countries[i].cats[j].img_url %>">
+                
+                </div>
+                
+                <% } %>
+                <% } %>
+          </div>
+      </div>
+      <% } %>
+      <% } %>
+  </div>
+  <div class="loader" style="<%- loader_disp %>"><img src="/images/loader.gif" alt=""></div>
+
+</body>
+<script src='/javascripts/main.js'></script>
+
+</html>

@@ -1,0 +1,155 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.loader {
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.countries {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid rgb(126, 113, 113);
+  background-color: lightcyan;
+}
+.info_country {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 10px 0 10px 10px;
+  font-size: 25px;
+}
+.info_country > img {
+  width: 3rem;
+  height: auto;
+  background-size: cover;
+  margin-left: 10px;
+  border: 1px solid rgb(126, 113, 113);
+}
+.cats {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.name_cat {
+  font-size: 20px;
+  margin: 5px 0 0 10px;
+}
+.photo_cat {
+  background-color: whitesmoke;
+  text-align: left;
+  margin: 5px;
+  border: 1px solid rgb(126, 113, 113);
+}
+.photo_cat > img {
+  width: 20rem;
+  height: auto;
+  margin: 0.5rem;
+  
+  background-size: cover;
+  border: 1px solid rgb(126, 113, 113);
+}
