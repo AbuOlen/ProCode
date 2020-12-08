@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Articles</title>
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+  <link rel="stylesheet" href="./stylesheets/main.css">
+</head>
+
+<body>
+  <div class="main">
+    <div class="link">
+      <a href = "/api">api</a>
+    </div>
+    <div class="page">
+
+      <form class="mainform">
+        <input type="text" placeholder="Author" name="author" required><br>
+        <input type="date" name="date" placeholder="Date" value="" min="2020-12-01" max="2030-12-31" required><br>
+        <textarea type="text" placeholder="Article" name="article" required></textarea><br>
+        <input type="text" placeholder="Tags" name="tags" required><br>
+        <input type="text" placeholder="Commment" name="comment" required><br>
+
+        <div>
+          <button type="submit">OK</button>
+        </div>
+      </form>
+      <div class="answ"></div>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

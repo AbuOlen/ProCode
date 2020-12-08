@@ -1,0 +1,54 @@
+.main {
+    display: flex;
+    align-items: flex-start;
+}
+.link, .page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.link {
+    width: 50px;
+    height: auto;
+    margin: 50px;
+    font-size: 1.5em;
+}
+.page {
+    width: 300px;
+    height: 700px;
+    margin: 20px;
+    font-size: 1.5em;
+}
+form input[type=text] {
+    width: 350px;
+    margin-bottom: 10px;
+    line-height: 2em;
+}
+form input[type=date] {
+    margin-bottom: 10px;
+}
+form input:first-child {
+    width: 100px;
+}
+form input:nth-child(2) {
+    width: 150px;
+}
+textarea {
+    width: 400px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+input:invalid, textarea {
+  border: 2px dashed rgb(141, 137, 137);
+}
+input:invalid:required, textarea:required {
+  background-color: rgb(252, 243, 244);
+}
+input:valid, textarea:valid {
+  border: 2px solid black;
+}
+button {
+    width: 80px;
+    height: 30px;
+    margin-left: 300px;
+}
