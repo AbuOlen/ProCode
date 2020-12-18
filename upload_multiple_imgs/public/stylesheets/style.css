@@ -6,3 +6,14 @@ body {
 a {
   color: #00B7FF;
 }
+
+.answ {
+  min-height: 1000px;
+}
+
+img {
+  width:300px;
+  min-height: 50px;
+  margin-right: 20px;
+}
+
