@@ -30,8 +30,8 @@ connection.query(query, (err, result) => {
     console.log('result', result);
 });
 
-var art_query = "INSERT INTO Articles (ArticleID, Content, UserID) VALUES ?";
-var values = [
+const art_query = "INSERT INTO Articles (ArticleID, Content, UserID) VALUES ?";
+const values = [
     [1, "Lorem", 2],
     [2, "Lorem lorem", 4],
     [3, "Lorem lorem lorem", 5],
