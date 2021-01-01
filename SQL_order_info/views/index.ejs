@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>mysql</title>
+  <link rel='stylesheet' href='/styles/main.css' />
+</head>
+
+<body>
+
+  <div class="main">
+    <form name="mainform" class="mainform">
+      <label for="drink-select">Choose a drink:</label>
+
+      <select name="drinks" id="drink-select">
+        <option value="">--Please choose an option--</option>
+        <%if(typeof(options) !== 'undefined') {%>
+        <%- options %>
+        <% } %>
+
+      </select>
+      <label for="start">Start date:</label>
+
+      <input type="date" id="start" name="range_start" value="2019-01-01" min="2019-01-01" max="2019-08-01">
+
+      <label for="end">End date:</label>
+
+      <input type="date" id="end" name="range_end" value="2019-08-01" min="2019-01-01" max="2019-08-01">
+
+       <button type="submit">Send</button>
+
+    </form>
+
+    <div class="answ"></div>
+
+  </div>
+
+
+  <div class="loader" style=<%= loaderhide %> <img src="./images/loader.gif" alt="">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

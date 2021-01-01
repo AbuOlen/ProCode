@@ -1,0 +1,29 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.main {
+  margin: 10px auto;
+  width: 90%;
+  position: relative;
+}
+
+.name {
+  margin-bottom: 10px;
+}
+
+.answ {
+  margin-top: 10px;
+}
+
+.mytable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
