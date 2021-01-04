@@ -30,7 +30,8 @@ router.post('/', upload.none(), async (req, res) => {
   console.log('req.body:', req.body.drinks, req.body.range_start, req.body.range_end );
   const orders = await modelOrders.order_info(req.body.drinks, req.body.range_start, req.body.range_end);
   console.table(orders);
-
+  const sum = await modelOrders.order_sum(req.body.drinks, req.body.range_start, req.body.range_end);
+  console.log('sum',sum[0].Total);
 // create table
   let str = `<h1>${req.body.drinks}</h1><br><table class="mytable"><th>DATE</th><th> ORDER ID</th><th>CUSTOMER NAME</th>`
 
@@ -42,7 +43,9 @@ router.post('/', upload.none(), async (req, res) => {
                 </tr>`
   })
   //option.loaderhide = 'display: none';
-  res.send(`${str} <table>`);
+  str = `${str} <table>`;
+  str = `${str} <br><p>Sum: ${(sum[0].Total/100).toFixed(2)} UAH</p>`;
+  res.send(str);
   //option.loaderhide = '';
  
 });
