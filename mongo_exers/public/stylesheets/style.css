@@ -1,10 +1,46 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-th {
-  color: rgb(3, 97, 134); }
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 15px;
+}
+.post_person {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(126, 113, 113);
+  background-color: rgb(232, 241, 241);
+  margin: 20px;
+  padding: 15px;
+}
 
-  td{
-    border: 1px solid black;
-  }
+
+.img_info_person {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid rgb(126, 113, 113);
+  margin: 10px 0 10px 10px;
+  font-size: 20px;
+}
+
+.info_person {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+  box-sizing: border-box;
+  border: 1px solid rgb(126, 113, 113);
+ } 
+
+.img {
+  width: 170px;
+  height: 200px;
+  background-image: url(../images/person.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}

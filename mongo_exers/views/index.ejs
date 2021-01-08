@@ -3,45 +3,46 @@
 
 <head>
   <title>mongodb</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <link rel='stylesheet' href='/stylesheets/style.css' />
+
 </head>
 
 <body>
-  <div class="info">
-    <table class="table">
-      <%if(typeof(entries) !== 'undefined') {%>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>Text</th>
-          <th>Tags</th>
-      </tr>
-      <% for (let i =0; i <entries.length;  i++ ) { %>
-      <tr>
-        <td>
-          <%= entries[i].title %>
-        </td>
-        <td>
-          <%= entries[i].author.fullname %>
-        </td>
-        <td>
-          <%= entries[i].author.tel %>
-        </td>
-        <td>
-          <%= entries[i].author.email %>
-        </td>
-        <td>
-          <%= entries[i].text %>
-        </td>
-        <td>
-          <%= entries[i].tags %>
-        </td>
-        <% } %>
-        <% } %>
-    </table>
-  </div>
+  <div class="main">
+
+    <%if(typeof(entries) !== 'undefined') {%>
+
+    <% for (let i =0; i < entries.length;  i++ ) { %>
+
+    <div class="post_person">
+      <div class="img_info_person">
+        <div class= "img"></div>
+        <div class="info_person">
+            <%= entries[i].author.fullname %><br><br>
+            <%= entries[i].author.tel %><br>
+            <%= entries[i].author.email %>
+        </div>
+      </div>
+      <div>
+          <h1><%= entries[i].title %></h1>
+      </div>
+      <div class="text_blog">
+          <%= entries[i].text %><br><br>
+      </div>
+      <div>
+          <p>TAGS:<% for (let j =0; j < entries[i].tags.length;  j++ ) { %>
+            <a href="<%=entries[i].tags[j]%>"> <%= entries[i].tags[j] %></a>
+          <% } %>
+          </p>
+      </div>
+    </div>
+      
+
+      <% } %>
+      <% } %>
+
+    </div>
 
 </body>
 
