@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+  <link rel='stylesheet' href='/stylesheets/main.css' />
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="link-inner">
+      <a class="api-link" href="./">index</a>
+    </div><br><br>
+    <form class="mainform" name="mainform">
+      <input type="title" class="title-inp" name="title"><br>
+      <input type="text" class="author-inp" placeholder="author name" name="authorSimple"><br>
+      <input type="text" class="tel-inp" placeholder="tels" name="telSimple"><br>
+      <input type="text" class="email-inp" placeholder="email" name="emailSimple"><br>
+      <textarea class="author-text" name="text" id="art" cols="30" rows="10"></textarea><br>
+      <input type="text" class="tags-inp" placeholder="your tags" name="tags">
+      <button type="submit">
+        SEND
+      </button>
+    </form>
+
+    <div class="status"></div>
+    <div class="answ">
+
+      <% arr.forEach((el) => { %>
+      <div class="post_person">
+        <a class="api-link" href="./<%= el._id %>"><%= el.title %></a>
+        <button type="button" class="btn" value="Reset">Reset</button>
+        <div class="info_person">
+          <%= el.author.fullname %><br><br>
+          <%= el.author.tel %><br>
+          <%= el.author.email %>
+      </div>
+        <div class="text_blog">
+          <%= el.text %>
+        </div>
+        <div>
+          <p>TAGS:<% for (let j = 0; j < el.tags.length;  j++ ) { %>
+            <a href="<%=el.tags[j]%>"> <%= el.tags[j] %></a>
+            <% } %>
+          </p>
+        </div>
+      </div>
+      <% }); %>
+
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+  <script src="./javascripts/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+  <link rel='stylesheet' href='/stylesheets/main.css' />
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="link-inner">
+      <a class="api-link" href="./">index</a>
+    </div>
+    <form class="mainform_form" name="mainform">
+      <input type="title" class="title-inp" name="title" value="<%= el.title %>">
+      <input type="text" class="author-inp" placeholder="author name" name="authorSimple" value="<%= el.author.fullname %>">
+      <input type="text" class="tel-inp" placeholder="tels" name="telSimple" value="<%= el.author.tel %>">
+      <input type="text" class="email-inp" placeholder="email" name="emailSimple" value="<%= el.author.email %>">
+      <textarea class="author-text" name="text" id="art" cols="30" rows="10"><%= el.text %></textarea>
+      <input type="text" class="tags-inp" placeholder="your tags" name="tags" value="<%= el.tags.join(',') %>">
+      <button type="submit">
+        SEND
+      </button>
+    </form>
+    <div class="answ"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+<script src="./javascripts/mainForm.js"></script>
+</body>
+
+</html>
