@@ -68,6 +68,7 @@ const generalSchema = new Schema(
         required: false,
       },
     },
+    subjects: { 
     mathematics: [
       {
       mark: {
@@ -98,7 +99,7 @@ const generalSchema = new Schema(
         },
       }
     ],
-   
+  },
     address: {
       zip: {
         type: Schema.Types.String,

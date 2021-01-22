@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>List of users</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <table border="1" >
-        <tr>           
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Parameters</th>
-            <th>Math</th>
-            <th>Literature</th>
-        </tr>
-        
-        <% if(userData.length!=0) {let i=1; userData.forEach(function(data){ %>
-        <tr>
-            <td><%=data.name %></td>
-            <td><%=data.surname %></td>
-            <td><a href="/list/parameters/<%=data.id%>">Change</a></td>
-            <td><a href="/list/mathematics/<%=data.id%>">Edit mark</a></td>
-            <td><a href="/list/literature/<%=data.id%>">Edit mark</a></td>
-        </tr>
-        <%  i++; }) %>
-        <% } else{ %>
-            <tr>
-                <td colspan="7">No Data Found</td>
-            </tr>
-        <% } %>
-    </table>
-      
-    </body>
-  </html>
+
+<head>
+  <title>List of users</title>
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Parameters</th>
+      <th>Subjects</th>
+    </tr>
+
+    <% if(userData.length!=0) {let i=1; userData.forEach(function(data){ %>
+    <tr>
+      <td><%=data.name %></td>
+      <td><%=data.surname %></td>
+      <td><a href="/list/parameters/<%=data.id%>">Change</a></td>
+      <td><a href="/list/subjects/<%=data.id%>">Change</a></td>
+    </tr>
+    <%  i++; }) %>
+    <% } else{ %>
+    <tr>
+      <td colspan="7">No Data Found</td>
+    </tr>
+    <% } %>
+  </table>
+
+
+  <div class="answ"></div>
+
+</body>
+
+</html>

@@ -16,9 +16,9 @@ router.get('/list/parameters/:id', userController.editData);
 
 router.post('/list/parameters/:id', upload.none(), userController.updateData);
 
+router.get('/list/subjects/:id', userController.editData);
 
-//router.get('/list/:sid/:id', userController.editData);
-//router.post('/list/:sid/:id', userController.updateData);
+router.post('/list/subjects/:id', upload.none(), userController.addData);
 
 
    

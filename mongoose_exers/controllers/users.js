@@ -4,8 +4,22 @@ const router = express.Router();
 const Users = require("../models/users");
 
 const crypto = require("crypto");
-
 const secret = "dfhdfh";
+
+const formParameters = (o) => {
+  return {
+      height: parseInt(o.height),
+      weight: parseInt(o.weight),
+      fill_date: Date(o.filltime),
+    }
+  };
+
+const formSubjects = (o) => {
+    return {
+      mark: parseInt(o.mark),
+      fill_date: Date(o.filltime),
+    }
+};
 
 const formToObj = (o) => {
   return {
@@ -17,23 +31,21 @@ const formToObj = (o) => {
     phone: o.phone,
     birthday: Date(o.birthday),
     sex: o.sex,
-    parameters: {
-      height: parseInt(o.height),
-      weight: parseInt(o.weight),
-      fill_date: Date(o.filltime),
+    parameters: formParameters(o),
+    subjects: {
+      mathematics: [
+        {
+          mark: parseInt(o.math),
+          fill_date: Date(o.filltime),
+        },
+      ],
+      literature: [
+        {
+          mark: parseInt(o.literature),
+          fill_date: Date(o.filltime),
+        },
+      ],
     },
-    mathematics: [
-      {
-        mark: parseInt(o.math),
-        fill_date: Date(o.filltime_math),
-      },
-    ],
-    literature: [
-      {
-        mark: parseInt(o.literature),
-        fill_date: Date(o.filltime_lit),
-      },
-    ],
     address: {
       zip: parseInt(o.zip),
       country: o.country,
@@ -44,6 +56,8 @@ const formToObj = (o) => {
     },
   };
 };
+
+
 
 module.exports = {
   userForm: function (req, res) {
@@ -64,19 +78,39 @@ module.exports = {
   },
   editData: function (req, res) {
     let editId = req.params.id;
-    console.log('req.params.id', req.params.id);
+    console.log("req.params.id", req.params.id);
     Users.editData(editId, function (data) {
-        res.render("form-update", { userData: data });
+      let changeUrl = req.originalUrl.slice(0, -24);
+      if (changeUrl == '/list/parameters/') {
+        res.render("form-update-parameters", { userData: data });
+      } else {
+        res.render("form-update-subjects", { userData: data });
+      }
     });
   },
-  updateData:function(req, res){
-    let inputData= req.body;
-    let editId= req.params.id;
-    console.log('inputData', inputData);
+  updateData: function (req, res) {
+    let inputData = req.body;
+    inputData = {
+      parameters: formParameters(inputData)
+    };
+    let editId = req.params.id;
+    console.log("inputData", inputData);
+    Users.updateData(inputData, editId, function (data) {
+      res.send(" record was updated");
+      console.log(" record was updated", data);
+    });
+  },
+
+  addData: function (req, res) {
+    let inputData = JSON.parse(JSON.stringify(req.body));
+    console.log('=========>', inputData );
+    let addNewtData = formSubjects(inputData);
     
-    Users.updateData(inputData, editId,function(data){
-       res.redirect('/list')
-       console.log(" record was updated", data);
+    let editId = req.params.id;
+    console.log("addNewtData", addNewtData);
+    Users.addData(addNewtData, editId, inputData.subjects, function (data) {
+      res.send(" record was updated");
+      console.log(" record was updated", data);
     });
   },
 };
