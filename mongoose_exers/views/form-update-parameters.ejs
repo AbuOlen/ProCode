@@ -22,13 +22,13 @@
         <form class="form" action="<%='/list/parameters/' + userData.id %>">
             <label>Height</label>
             <input type="text" placeholder="" name="height" required
-                value=" <%= userData.parameters.height %>">
+                value="<%= userData.parameters.height %>">
             <label>Weight</label>
             <input type="text" placeholder="" name="weight" required
-                value=" <%= userData.parameters.weight %>">
+                value="<%= userData.parameters.weight %>">
             <label>Fill</label>
             <input type="datetime-local" id="filltime" name="filltime" required
-                value=" <%= userData.parameters.fill_date %>">
+                value="<%= userData.parameters.fill_date %>">
             <button type="submit">Submit</button>
         </form>
         <% } %>

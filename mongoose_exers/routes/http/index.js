@@ -4,7 +4,7 @@ const multer = require('multer');
 const upload = multer();
 
 const userController = require('../../controllers/users');
-
+const validator = require('../../controllers/validator');
 
 router.get('/', userController.userForm);
 
@@ -14,7 +14,7 @@ router.get('/list', userController.fetchData);
 
 router.get('/list/parameters/:id', userController.editData);
 
-router.post('/list/parameters/:id', upload.none(), userController.updateData);
+router.post('/list/parameters/:id', upload.none(), validator, userController.updateData);
 
 router.get('/list/subjects/:id', userController.editData);
 

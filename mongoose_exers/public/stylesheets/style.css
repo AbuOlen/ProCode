@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.not_valid {
+  background-color: rgb(238, 159, 159);
+}
