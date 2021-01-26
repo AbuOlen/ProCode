@@ -4,7 +4,7 @@ const multer = require('multer');
 const upload = multer();
 
 const userController = require('../../controllers/users');
-const validator = require('../../controllers/validator');
+const validator = require('../validator');
 
 router.get('/', userController.userForm);
 
