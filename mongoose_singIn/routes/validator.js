@@ -7,25 +7,25 @@ const schema = {
       type: "string",
       "minLength": 1,
       "maxLength": 255,
-      "pattern": "^[a-zA-Z][^\s]+$"
+      "pattern": "^[a-zA-Z]+$"
     },
   surname: {
       type: "string",
       "minLength": 1,
       "maxLength": 255,
-      "pattern": "^[a-zA-Z][^\s]+$"
+      "pattern": "^[a-zA-Z]+$"
     },
     login: {
       type: "string",
-      "minLength": 1,
+      "minLength": 5,
       "maxLength": 15,
-      "pattern": "^[0-9a-zA-Z][^\s]+$"
+      "pattern": "^[0-9a-zA-Z]+$"
     },
     auth: {
       type: "string",
       "minLength": 1,
       "maxLength": 512,
-      "pattern": "^[0-9a-zA-Z][^\s]+$"
+      "pattern": "^[0-9a-zA-Z]+$"
     },
   },
 };

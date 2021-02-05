@@ -14,7 +14,7 @@ router.get('/register', (req, res) => {
     res.render('register');
   });
 
-router.post('/register', upload.none(), userController.createData);
+router.post('/register', upload.none(), validator, userController.createData);
 
 router.post('/login', upload.none(), userController.verifyLogin);
 

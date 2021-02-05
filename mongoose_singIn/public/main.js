@@ -1,12 +1,36 @@
 const formEl = document.querySelector('.mainform');
 const answEl = document.querySelector('.answ');
 
+const arrInputs = document.querySelectorAll('input');
+
 formEl.addEventListener('submit', (ev) => {
   ev.preventDefault();
   let params = new FormData(formEl);
   answEl.innerHTML = '';
-  axios.post('/register', params)
-    .then(r => {
-        answEl.innerHTML = r.data;
-    });
+
+  axios.post(formEl.action, params).then((r) => {
+    console.log('>>>>', r.data);
+    if (!Array.isArray(r.data)) {
+      answEl.innerHTML = r.data;
+    } else {
+      let wrongFields = r.data.map((el) => el.dataPath.slice(1));
+      arrInputs.forEach((el) => {
+        if(wrongFields.includes(el.name)) {
+          el.classList.add("not_valid");
+        } 
+      });
+      let data = "Please fill " + wrongFields + " correctly";
+      answEl.innerHTML = data;
+    } 
+  });
+
+
+
+
+
+
+  // axios.post('/register', params)
+  //   .then(r => {
+  //       answEl.innerHTML = r.data;
+  //   });
 });
