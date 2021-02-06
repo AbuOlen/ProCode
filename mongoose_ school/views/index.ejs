@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mongoose </title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Fill form</h1>
+    <div class="main">
+
+      <form class="mainform">
+        <label for="fname">First name:</label>
+        <input type="text" placeholder="" name="name"><br><br>
+        <label for="fname">Surname:</label>
+        <input type="text" placeholder="" name="surname"><br><br>
+        <label for="fname">Login:</label>
+        <input type="text" placeholder="" name="login"><br>
+        <label for="fname">Authentification:</label>
+        <input type="text" placeholder="" name="auth"><br>
+        <label for="email">Enter email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <input type="tel" id="phone" name="phone" placeholder="+38(012)1234567" pattern="^\+[3][8]\((0\d{2})\)(\d{7})$"><br><br>
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday"><br><br>
+        <label for="marks">Sex:</label>
+        <select name="sex" autofocus>
+          <option disabled="disabled" name="sex" selected="selected">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select><br><br>
+        <label for="fname">Parameters:</label><br>
+        <label for="fname">of height:</label>
+        <input type="text" placeholder="" name="height"><br>
+        <label for="fname">of weight:</label>
+        <input type="text" placeholder="" name="weight"><br><br>
+        <label for="marks">Fill</label>
+        <input type="datetime-local" id="filltime" name="filltime"><br><br>
+        <label for="marks">Math mark</label>
+        <input type="text" placeholder="" name="math">
+        <label for="marks">fill</label>
+        <input type="datetime-local" id="filltime" name="filltime"><br>
+        <label for="marks">Literature mark</label>
+        <input type="text" placeholder="" name="literature">
+        <label for="marks">fill</label>
+        <input type="datetime-local" id="filltime" name="filltime"><br><br>
+        <label for="fname">ZIP:</label>
+        <input type="text" placeholder="" name="zip" value="12345"><br>
+        <label for="fname">Country:</label>
+        <input type="text" placeholder="" name="country" value="ukraine"><br>
+        <label for="fname">City:</label>
+        <input type="text" placeholder="" name="city" value="lviv"><br>
+        <label for="fname">Street:</label>
+        <input type="text" placeholder="" name="street" value="rynkova"><br>
+        <label for="fname">Bilding:</label>
+        <input type="text" placeholder="" name="bilding" value="2"><br>
+        <label for="fname">Apartment:</label>
+        <input type="text" placeholder="" name="apartment" value="54"><br><br><br>
+
+        <div>
+          <button type="submit">OK</button>
+        </div>
+      </form>
+      <div class="answ"></div>
+    
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+    <script src="/main.js"></script>
+  
+  </body>
+</html>

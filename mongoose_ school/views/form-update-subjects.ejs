@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Subjects</title>
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <div class="title">
+        <h2>Form</h2>
+        <h3> <%= userData.surname %> <%= userData.name %> </h3>
+        <a href="/list">List</a>
+    </div>
+  <form class="form_subjects">
+
+    <label for="marks">Subject:</label>
+    <select name="subjects" autofocus>
+      <option disabled="disabled" name="subjects" selected="selected">Select</option>
+      <option>mathematics</option>
+      <option>literature</option>
+    </select>
+    <label for="marks">Mark</label>
+    <input type="text" placeholder="" name="mark">
+    <button type="submit">OK</button>
+  </form>
+  <div class="answ"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+  <script src="/form_subj.js"></script>
+
+
+  
+</body>
+
+</html>
