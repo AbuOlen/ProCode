@@ -10,7 +10,7 @@ formEl.addEventListener('submit', (ev) => {
     .then(r => {
         let resp = r.data;
         if(resp.isValid) {
-          this.window.location.href = `/hello?name=${resp.name}`;
+          this.window.location.href = `/hello?name=${resp.name}&id=${resp.userid}`;
         } else {
           answEl.innerHTML = resp.message;
         }

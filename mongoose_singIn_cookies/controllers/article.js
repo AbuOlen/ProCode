@@ -27,7 +27,7 @@ module.exports = {
   },
 
   findArticleById: async function (req, res) {
-    await Articles.findOne({ author: ObjectId(req.params.id)} )
+    await Articles.find({ author: ObjectId(req.params.id)} )
       .populate('author', 'surname')
       .then((r) => {
         console.log(r);

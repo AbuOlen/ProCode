@@ -22,8 +22,8 @@ module.exports = {
   },
 
   helloForm: function (req, res) {
-    console.log(req.get('user-agent'));
-    res.render('hello', {name: req.query.name});
+    console.log('userid>>>>>>>>>>',req.query.id);
+    res.render('hello', {name: req.query.name, userid: req.query.id});
   },
 
   createData: function (req, res) {
@@ -42,6 +42,7 @@ module.exports = {
     if (isValid) {
       resp.name = user.name;
       resp.surname = user.surname;
+      resp.userid = user._id;
       console.log(Auth);
       Auth.generateUserAuth(req, res, user, (err) => {
         if (err) throw err;
