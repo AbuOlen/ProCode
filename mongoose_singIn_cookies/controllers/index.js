@@ -11,9 +11,8 @@ module.exports = {
   },
 
   logoutForm: function (req, res) {
-    res.cookie('token', {
-      maxAge: 0,
-    })
+    res.clearCookie('token');
+    res.clearCookie('expired');
     res.redirect("login");
   },
 
