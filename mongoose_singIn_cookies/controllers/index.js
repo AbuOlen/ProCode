@@ -10,6 +10,14 @@ module.exports = {
     res.render("login");
   },
 
+  logoutForm: function (req, res) {
+    res.cookie('token', {
+      maxAge: 0,
+    })
+    res.redirect("login");
+  },
+
+
   registerForm: function (req, res) {
     res.render('register');
   },

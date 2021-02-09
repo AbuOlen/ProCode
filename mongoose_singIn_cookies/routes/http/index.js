@@ -27,6 +27,6 @@ router.post('/articles/create', upload.none(), articleController.createArticle);
 
 router.get('/articles/:id', articleController.findArticleById);
 
-
+router.get('/logout', userController.logoutForm);
 
 module.exports = router;
