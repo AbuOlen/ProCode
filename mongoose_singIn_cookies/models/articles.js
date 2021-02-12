@@ -7,10 +7,14 @@ const Auth = require('../models/auth');
 articleSchema.statics.createArt = async function (req, res, cb) {
   let article = req.body;
   let token = req.cookies['token'];
+  if (token === undefined) {
+    res.send({isValid: false});
+    return;
+  } 
   let auth = await Auth.findOne({token: token}).exec();
   article.author = auth.user;
   const artData = await this.create(article);
-  console.log(artData);
+  console.log('artData>>>>>>', artData);
   cb(artData);
 };
 

@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const Users = require('../models/users');
-const Models = require('../models/schemas/users');
-const Auth = require('../models/auth');
+const Users = require("../models/users");
+const Models = require("../models/schemas/users");
+const Auth = require("../models/auth");
 
 module.exports = {
   loginForm: function (req, res) {
@@ -11,19 +11,17 @@ module.exports = {
   },
 
   logoutForm: function (req, res) {
-    res.clearCookie('token');
-    res.clearCookie('expired');
+    res.clearCookie("token");
     res.redirect("login");
   },
 
-
   registerForm: function (req, res) {
-    res.render('register');
+    res.render("register");
   },
 
   helloForm: function (req, res) {
-    console.log('userid>>>>>>>>>>',req.query.id);
-    res.render('hello', {name: req.query.name, userid: req.query.id});
+    console.log("userid>>>>>>>>>>", req.query.id);
+    res.render("hello", { name: req.query.name, userid: req.query.id });
   },
 
   createData: function (req, res) {
@@ -52,6 +50,5 @@ module.exports = {
       resp.message = "Invalid login or password";
       res.send(resp);
     }
-
   },
 };
