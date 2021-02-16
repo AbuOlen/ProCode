@@ -7,9 +7,10 @@ var parser = require("ua-parser-js");
 const authSchema = require("./schemas/auth");
 
 // ------generate user authorization model
-authSchema.statics.generateUserAuth = async function (req, res, cb) {
+authSchema.statics.generateUserAuth = async function (req, res, jsonGeo, cb) {
   console.log(req.headers);
   let ua = parser(req.headers["user-agent"]);
+  let geo = jsonGeo.data;
   const authUser = new model({
     ip: req.connection.remoteAddress,
     browser: ua.browser.name + " " + ua.browser.version,
@@ -17,6 +18,9 @@ authSchema.statics.generateUserAuth = async function (req, res, cb) {
     token: req.headers["user-agent"],
     views: req.session.views,
     referer: req.headers["referer"],
+    country: geo.country_name,
+    country_flag: geo.location.country_flag,
+    city: geo.city,
   });
 
   authUser.save(function (err, data) {

@@ -10,6 +10,9 @@ module.exports = new Schema(
     token: String,
     views: Number,
     referer: String,
+    country: String,
+    country_flag: String,
+    city: String,
   },
   { timestamps: true }
 );
