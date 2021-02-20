@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Socket.IO chat</title>
+</head>
+
+<body>
+
+    <div class="clientData"></div>
+
+    <br>
+
+    <div class="counter"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        const socket = io.connect('http://127.0.0.1:7000');
+
+        const clientData = document.querySelector('.clientData');
+        const countClients = document.querySelector('.counter');
+
+        let clients = [];
+
+        socket.on("connect", () => {
+            socket.emit('secondary', "Hi");
+        });
+
+        socket.on('secondary', function (cli) {
+
+            let client = clients.find((c) => { return c.id === cli.id });
+            let item = {};
+            if (!client) {
+                clients.push(cli);
+                item = document.createElement('div');
+                item.id = cli.id;
+                clientData.appendChild(item);
+            } else {
+                item = document.getElementById(cli.id);
+            }
+            item.textContent = cli.level;
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+    </script>
+</body>
+
+</html>

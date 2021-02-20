@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Socket.IO</title>
+</head>
+<style>
+  input[type="range"] {
+   position: absolute;
+   top: 15%;
+   transform: rotate(270deg);
+}
+</style>
+<body>
+
+  <form id="form" action="">
+    <input type="range" id="level" name="level" min="0" max="99" value="0">
+    <label for="level"></label>
+  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    const level = document.getElementById('level');
+    const form = document.getElementById('form');
+    const label = document.querySelector('label')
+
+    const socket = io.connect('http://127.0.0.1:7000');
+    socket.on("connect", () => {
+      form.style.visibility = "visible";
+    });
+    socket.on("disconnect", (reason) => {
+      form.style.visibility = "hidden";
+      socket.connect();
+    });
+   
+    level.oninput = function() {
+      socket.emit('msg', this.value);
+      label.innerHTML = this.value;
+    }
+
+
+
+  </script>
+</body>
+
+</html>
