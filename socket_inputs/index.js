@@ -52,6 +52,10 @@ io.on("connection", (socket) => {
 
 });
 
+// io.on ( 'connection' , socket => { 
+//   socket.join ( 'primary' ); 
+// });
+
 
 http.listen(port, host, () => {
   console.log(`Socket.IO server running at http://${host}:${port}/`);
