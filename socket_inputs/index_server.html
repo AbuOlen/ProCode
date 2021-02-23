@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Socket.IO Primary_Secondary</title>
     <link rel="icon" type="image/png"
-    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
-   
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
 </head>
 <style>
-.blockInfo {
-  width: 250px;
-  height: 150px;
-  border: solid 1px gray;
-  border-radius: 10px;
-  margin: 5px;
-}
-.dot {
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  position: absolute;
-  margin-left: 10px;
-  margin-top: 10px;
-  display: inline-block;
-}
-.green {
-  background-color: green;
-}
-.yellow {
-  background-color: yellow;
-}
-.red {
-  background-color: red;
-}
-.lev {
-  width: 100px;
-  height: 40px;
-  position: relative;
-  margin-left: 70px;
-  margin-top: 20px;
-  text-align: center;
-  font-size: 2em;
-  border: solid 1px gray;
-}
-.clientId {
-  height: 20px;
-  margin-left: 30px;
-  margin-top: 40px;
-}
+    .blockInfo {
+        width: 250px;
+        height: 150px;
+        border: solid 1px gray;
+        border-radius: 10px;
+        margin: 5px;
+    }
+    .dot {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        position: absolute;
+        margin-left: 10px;
+        margin-top: 10px;
+        display: inline-block;
+    }
+    .green {
+        background-color: green;
+    }
+    .yellow {
+        background-color: yellow;
+    }
+    .red {
+        background-color: red;
+    }
+    .lev {
+        width: 100px;
+        height: 40px;
+        position: relative;
+        margin-left: 70px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 2em;
+        border: solid 1px gray;
+    }
+    .clientId {
+        height: 20px;
+        margin-left: 30px;
+        margin-top: 40px;
+    }
 </style>
+
 <body>
 
     <div class="clientData"></div><br>
@@ -56,57 +55,62 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io.connect('http://127.0.0.1:7000');
+        const socket = io.connect('http://127.0.0.1:7000/panel');
 
         const clientData = document.querySelector('.clientData');
         const countClients = document.querySelector('.counter');
 
         let clients = [];
 
-        socket.on("connect", () => {
-            socket.emit('secondary', "Hi");
-        });
-
-        socket.on('secondary', function (cli) {
+        socket.on('msg', function (cli) {
             console.log(cli);
             let client = clients.find((c) => { return c.id === cli.id });
             let item = {};
-                        // if new client
-            if (!client) {    
+            // if new client
+            if (!client) {
                 clients.push(cli);
+                    // create block with info 
                 item = document.createElement('div');
                 item.className = 'blockInfo';
                 item.id = cli.id;
-                    // create block with info 
-                    let status = document.createElement('div');
-                    status.className = 'status';
-                    status.innerHTML = "<span class='dot green'></span>";
-                    //document.getElementsByClassName('status')[0].innerHTML = "<span class='dot green'></span>";
-                    item.appendChild(status);
-
-                    let lev = document.createElement('div');
-                    lev.className = 'lev';
-                    lev.textContent = cli.level;
-                    //document.getElementsByClassName('lev')[0].textContent = cli.level;
-                    item.appendChild(lev);
-
-                    let clientId = document.createElement('div');
-                    clientId.className = 'clientId';
-                    clientId.textContent = cli.id;
-                    //document.getElementsByClassName('clientId')[0].textContent = cli.id;
-                    item.appendChild(clientId);
                 
-                clientData.appendChild(item);
-                        // if client
-            } else {
+                let status = document.createElement('div');
+                status.className = 'status';
+                status.innerHTML = "<span class='dot green'></span>";
+                item.appendChild(status);
+
+                let lev = document.createElement('div');
+                lev.className = 'lev';
+                lev.textContent = cli.level;
+                item.appendChild(lev);
+
+                let clientId = document.createElement('div');
+                clientId.className = 'clientId';
+                clientId.textContent = cli.id;
+                item.appendChild(clientId);
+
+                clientData.appendChild(item); // created client block with info 
+
+            } else {         // if client
                 item = document.getElementById(cli.id);
                 item.childNodes[1].textContent = cli.level;
+                if (cli.connected) {        //to change dot color
+                    item.childNodes[0].innerHTML = "<span class='dot green'></span>";
+                } else {
+                    item.childNodes[0].innerHTML = "<span class='dot yellow'></span>";
+                    setTimeout(function(cid) {
+                        let item = document.getElementById(cid);
+                        item.parentNode.removeChild(item);
+                    }, 5000, cli.id)    // change dot color when client disconnected
+                }
             };
 
-            //item.textContent = cli.level;
             window.scrollTo(0, document.body.scrollHeight);
         });
 
+        socket.on("disconnect", (reason) => {
+            socket.connect();
+        });
     </script>
 </body>
 

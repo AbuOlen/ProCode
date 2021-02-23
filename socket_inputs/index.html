@@ -3,43 +3,51 @@
 
 <head>
   <title>Socket.IO</title>
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+
 </head>
 <style>
   input[type="range"] {
-   position: absolute;
-   top: 15%;
-   transform: rotate(270deg);
-}
+    position: absolute;
+    top: 15%;
+    transform: rotate(270deg);
+  }
 </style>
+
 <body>
 
+  <div class="connectInfo"></div><br>
   <form id="form" action="">
-    <input type="range" id="level" name="level" min="0" max="99" value="0">
+    <input type="range" id="level" name="level" min="0" max="99" step="5" value="0">
     <label for="level"></label>
   </form>
+
 
   <script src="/socket.io/socket.io.js"></script>
 
   <script>
     const level = document.getElementById('level');
     const form = document.getElementById('form');
-    const label = document.querySelector('label')
+    const label = document.querySelector('label');
+    const connectInfo = document.querySelector('.connectInfo');
 
     const socket = io.connect('http://127.0.0.1:7000');
-    socket.on("connect", () => {
-      form.style.visibility = "visible";
+
+    socket.on("connect", (socket) => {
+      connectInfo.innerHTML = 'User connected to Server';
     });
+
+    level.oninput = function () {
+      socket.emit('msg', this.value);
+      label.innerHTML = this.value;
+    };
+
     socket.on("disconnect", (reason) => {
+      connectInfo.innerHTML = 'User disconnected with Server';
       form.style.visibility = "hidden";
       socket.connect();
     });
-   
-    level.oninput = function() {
-      socket.emit('msg', this.value);
-      label.innerHTML = this.value;
-    }
-
-
 
   </script>
 </body>
