@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Passport</title>
+  <link rel="icon" type="image/png"
+    href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Check_green_icon.svg/323px-Check_green_icon.svg.png" />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <p>
+        ID: <%= user.id %><br/>
+        Username: <%= user.username %><br/>
+        Name: <%= user.displayName %><br/>
+        <% if (user.emails) { %>
+        Email: <%= user.emails[0].value %><br/>
+        <% } %>
+        </p><br><br><br><br>
+        <a href="/logOut">LogOut</a>
+</body>
+
+</html>
