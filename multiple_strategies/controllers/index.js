@@ -1,8 +1,10 @@
 const Users = require("../models/Users/index");
-const auth = require("./auth");
+const authLocal = require("./auth/local");
+const authGoogle = require("./auth/google");
 
 module.exports = {
-  auth,
+  authLocal,
+  authGoogle,
 
   createData: function (req, res) {
     let inputData = req.body;
@@ -12,14 +14,15 @@ module.exports = {
     });
   },
   showHomePage: function (req, res) {
+   
     res.render("login");
-  },
+},
   showFailedPage: function (req, res) {
     res.send("You Failed to log in!");
   },
   isLoggedIn: function (req, res, next) {
     // Auth middleware that checks if the user is logged in
-    if (req.user) {
+    if (req.isAuthenticated()) {
       next();
     } else {
       res.sendStatus(401);

@@ -6,9 +6,9 @@ const upload = multer();
 const passport = require('passport');
 const controllers = require('../../controllers/index');
 
-require('../../controllers/auth/strategies/google'); 
+//require('../../controllers/auth/google/__strategy'); 
 //require('../../controllers/auth/strategies/local'); 
-const validator = require('../validator');
+//const validator = require('../validator');
 
 // Login Form
 //router.get('/login', userController.loginForm);
@@ -21,48 +21,36 @@ router.get('/failed', controllers.showFailedPage);
 router.get('/good', controllers.isLoggedIn, controllers.showWelcomeGoogle)
         
 // Auth Routes Google
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+//router.get('/google', controllers.authGoogle.getLogin);
+router.get('/google',passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }), controllers.redirectToWelcome);
 
 //router.get('/logout', controllers.auth.logout);
 
 //Auth Routes Local
-router.post('/local',  upload.none(), controllers.auth.getLogin, controllers.auth.isAuth);
-// (req, res, next) => {
-//     passport.authenticate('local', function(err, user) {
-//         let resp = { isValid: false, message: "" };
-//       if (err) { return next(err); }
-//       if (!user) { 
-//         resp.message =  'incorrect email or password!'; 
-//           res.send(resp);
-//         }
-//       req.logIn(user, function(err) {
-//         if (err) { return next(err); }
-//         resp.isValid = true;
-//         resp.name = user.name;
-//         resp.surname = user.surname;
-//         res.send(resp);
-//       });
-//     })(req, res, next);
-//   });
-//   const auth = (req, res, next) => {
-//     if (req.isAuthenticated()) {               // ? 
-//       next();
-//     } else {
-//       console.log('Not authenticated');
-//       return res.redirect('/');
-//     }
-//   };
-//   router.get('/admin', auth, (req, res) => {
-//     res.send('admin page');
-//   });
-  
-  router.post('/logout', (req, res) => {
-    req.logOut();
-    res.redirect('/');
-  });
+router.post('/local',  upload.none(), controllers.authLocal.getLogin, controllers.authLocal.isAuth);
 
+  
+  // router.post('/logout', (req, res) => {
+  //   req.logOut();
+  //   res.redirect('/');
+  // });
+  router.get('/logout', function(req, res) {
+    //if(req.session.passport){ delete req.session.passport; }
+    // req.session.destroy((err) => {
+    //   if(err) {
+    //     console.log(err);
+    //   };
+    //   req.logout();
+      req.logOut();
+      
+      //res.json({});
+      res.redirect('/') // will always fire after session is destroyed
+    })
+    //req.logout();
+    //res.redirect('/');
+//});
 //Registration Form
 // router.get('/register', (req, res) => {
 //     res.render('register');

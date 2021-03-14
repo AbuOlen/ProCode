@@ -1,22 +1,43 @@
 const path = require('path');
+const express = require('express');
+const app = express();
 const createError = require('http-errors');
 // const helmet = require('helmet');
 // const logger = require('logger').express;
-const express = require('express');
+
 const session = require('express-session');
+//app.use(express.static("public"));
+//app.use(session({ secret: "cats" }));
 const FileStore = require('session-file-store')(session);
 //const MongoStore = require('connect-mongo')(session);
 const passport = require('passport')
 const log = require('logger').common;
 // const log = require('pino');
-// const bodyParser = require('body-parser');
-// var cookieParser = require('cookie-parser');
 
+//-------passport------
+const cors = require("cors");
+const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+const cookieSession = require("cookie-session");
+app.use(cors());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+// For an actual app you should configure this with an experation time, better keys, proxy and secure
+app.use(
+  cookieSession({
+    name: "tuto-session",
+    keys: ["key1", "key2"],
+  })
+);
+// Initializes passport and passport sessions
+app.use(passport.initialize());
+app.use(passport.session());
+//-------end passport-----
 // Роуты
 const indexRouter = require('routes/http/index');
 const authRouter = require('routes/http/auth');
-
-const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../../views'));
@@ -27,8 +48,8 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(bodyParser.json());
-// app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use(
   session({
@@ -43,11 +64,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
   })
-)
-
-// require('controllers/auth/local-strategy');
-app.use(passport.initialize());
-app.use(passport.session());
+);
 
 app.use(express.static(path.join(__dirname, '../../public')));
 
@@ -58,7 +75,6 @@ app.use((req, res, next) => {
     next();
     return;
   }
-
   next(createError(503)); // код 503 это "сервис временно недоступен", другими словами - сервер живой, но занят чем-то другим, постучите позже.
 });
 

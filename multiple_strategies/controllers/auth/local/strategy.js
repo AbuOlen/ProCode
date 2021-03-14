@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const { ObjectID } = require("mongodb");
+//const { ObjectID } = require("mongodb");
 const Model = require("../../../models/Users");
 
 passport.serializeUser(function (user, done) {
@@ -10,8 +10,12 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (id, done) {
   console.log("DEserialize >>>", id);
-  const user = await Model.findById(id);
-  done(null, user);                 
+  if (id.id == "undefined") {              // check if id is user{} or user.id
+    const user = await Model.findById(id);
+    done(null, user);
+  } else {
+    done(null, id);
+  }
 });
 
 passport.use(

@@ -1,8 +1,11 @@
 const passport = require('passport');
-const localStrategy = require('./strategies/local');
+const localStrategy = require('./strategy');
 
 const getLogin = (req, res, next) => { 
     console.log('>>> getLogin');
+    //req.session = null;
+    req.logout();
+    //res.redirect('/');
     passport.authenticate('local', function(err, user) {
         let resp = { isValid: false, message: "" };
       if (err) { return next(err); }
@@ -22,6 +25,7 @@ const getLogin = (req, res, next) => {
 const isAuth = (req, res, next) => {
     console.log('>>> isAuth');
     if (req.isAuthenticated()) {
+       console.log('>>>>>>>>>',req.isAuthenticated());
       next();
     } else {
       return res.redirect('/');
