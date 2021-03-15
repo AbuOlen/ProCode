@@ -4,8 +4,9 @@ const createError = require('http-errors');
 // const logger = require('logger').express;
 const express = require('express');
 const session = require('express-session');
-const FileStore = require('session-file-store')(session);
-//const MongoStore = require('connect-mongo')(session);
+//const FileStore = require('session-file-store')(session);
+//const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
 const passport = require('passport')
 const log = require('logger').common;
 // const log = require('pino');
@@ -29,11 +30,16 @@ app.use(express.urlencoded({ extended: false }));
 
 // app.use(bodyParser.json());
 // app.use(cookieParser());
-
+require('../../config/db');
 app.use(
   session({
-    store: new FileStore(),
-    //store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    //store: new FileStore(),
+    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/authorization', mongoOptions: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      //useFindAndModify: false,
+      useCreateIndex: true
+    } }),
     secret: 'ds23$%sdww3f',
     cookie: {
       path: '/',
