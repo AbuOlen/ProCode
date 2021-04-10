@@ -1,11 +1,43 @@
 import React from "react";
 import "./App.css";
 
-const Master = ({click, titleButton, change, level }) => {
-    return <div>
-        <input type="range" id="level" name="level" min="0" max="99" step="5" defaultValue="0"  onChange={change} />
+class Master extends React.Component {
+  constructor(props) {
+    super(props);
 
-    <input className="button_play" type="button" onClick={click} value={titleButton} />
-        </div>
-};
+    this.handleClick = this.handleClick.bind(this);
+    this.changeLevel = this.changeLevel.bind(this);
+  }
+  handleClick(e) {
+    this.props.onHandleClick(e.target.value);
+  }
+  changeLevel(e) {
+    this.props.onChangeLevel(e.target.value);
+  }
+  render() {
+    const level = this.props.level;
+    const titleButton = this.props.titleButton;
+    return (
+      <div className="master">
+        <input
+          className="range"
+          type="range"
+          name="level"
+          min="0"
+          max="99"
+          step="1"
+          defaultValue={level}
+          onChange={this.changeLevel}
+        /><br></br>
+        <input
+          className="button_play"
+          type="button"
+          onClick={this.handleClick}
+          value={titleButton}
+        />
+      </div>
+    );
+  }
+}
+
 export default Master;

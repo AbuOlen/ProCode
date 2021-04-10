@@ -20,21 +20,21 @@ class Main extends React.Component {
         title: !prevState.isToggleOn ? "ON" : "OFF",
       }));
     };
-    changeLevel(event){
+    changeLevel(level){
       if(!this.state.isToggleOn) {
         return;
       }
-      this.setState(() => ({
-        level: event.target.value,
-      }))
+      this.setState({
+        level: level,
+      })
     }
     render() {
       return (
         <div className="main">
           <Master
-            click={this.handleClick}
+            onHandleClick={this.handleClick}
             titleButton={this.state.title}
-            change={this.changeLevel}
+            onChangeLevel={this.changeLevel}
             level={this.state.level} 
           />
           <Slave level={this.state.level} />

@@ -1,11 +1,14 @@
 import React from "react";
-
-
-
-const Slave = ({ level }) => {
+class Slave extends React.Component {
+  constructor(props) {
+    super(props);
+  };
+  
+  render() {
+    const level = this.props.level;
   return (
-    <div> <p>{level}</p></div> 
+    <div className="slave"> <p>{ level }</p></div> 
   );
 };
-
+};
 export default Slave;
