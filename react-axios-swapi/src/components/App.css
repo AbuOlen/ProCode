@@ -22,7 +22,7 @@
   padding: 10px;
   margin: 20px;
   text-align: center;
-  justify-content: center;
+ 
 }
 input {
   width: 150px;
@@ -36,11 +36,11 @@ li {
   cursor: pointer;
 }
 .info {
-  position: absolute;
+
   font-size: 10;
   z-index: 10;
-  left: 450px;
   width: 300px;
+  text-align: left;
   background-color: antiquewhite;
   border: 2px solid rgb(214, 209, 209);
   border-radius: 5px;

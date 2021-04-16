@@ -6,9 +6,14 @@ const Swapi = ({ hero, starships }) => {
   const [isVisible, setVisible] = useState(false);
   const [starship, setStarship] = useState({});
 
+  const [positionX, setPositionX] = useState(0);
+  const [positionY, setPositionY] = useState(0);
+
   const onHover = (e) => {
     setVisible(true);
     setStarship(starships[e.target.id]);
+    setPositionX(e.clientX);
+    setPositionY(e.clientY);
   };
   const onLeave = () => {
     setVisible(false);
@@ -35,7 +40,10 @@ const Swapi = ({ hero, starships }) => {
         <div
           className="info"
           style={{
+            position: "relative",
             opacity: { isVisible },
+            left: { positionX },
+            top: { positionY },
           }}
         >
           <Info starship={starship} />
