@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swapi from "./Swapi";
 
+import "./App.css";
+
 const Main = () => {
   const [hero, setHero] = useState("");
   const [heroId, setHeroId] = useState(1);
   const [starships, setStarships] = useState([]);
+
   useEffect(() => {
     const getHero = async (id) => {
       let url = `https://swapi.dev/api/people/${id}/`;
@@ -20,15 +23,23 @@ const Main = () => {
             new Promise((res, req) => {
               axios
                 .get(url)
-                .then((res2) => {res(res2.data.name)})
-                .catch((err) => {console.log("axios err", err)});
+                .then((res2) => {
+                  res(res2.data);
+                })
+                .catch((err) => {
+                  console.log("axios err", err);
+                });
             })
           );
         });
 
         Promise.all(ships)
-          .then((val) => {setStarships(val);})
-          .catch((err) => {console.log("axios err", err);});
+          .then((val) => {
+            setStarships(val);
+          })
+          .catch((err) => {
+            console.log("axios err", err);
+          });
       });
     };
     getHero(heroId);
