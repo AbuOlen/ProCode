@@ -1,0 +1,8 @@
+
+export const COUNTER_PLUS1 = 'COUNTER_PLUS1';
+export const COUNTER_MINUS1 = 'COUNTER_MINUS1';
+export const COUNTER_PLUS5 = 'COUNTER_PLUS5';
+export const COUNTER_PLUS_PARAM = 'COUNTER_PLUS_PARAM';
+export const COUNTER_PLUS_RANDOM = 'COUNTER_PLUS_RANDOM';
+export const RESET = 'RESET';
+
