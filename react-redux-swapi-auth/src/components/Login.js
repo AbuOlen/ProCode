@@ -1,27 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import getPassw from "../actions/getPassw";
-import setPassw from "../actions/setPassw";
-import getUs from "../actions/getUs";
-import setUs from "../actions/setUs";
+import * as actions from "../actions/actions";
 
 const Login = ({
-  urlPassword,
-  localPassword,
+  login,
+  password,
+  passwordValid,
   getPassword,
   onChangePassword,
-  onChangeUser,
-  userName,
-  setLogin,
+  onChangeLogin,
+  loginValid,
 }) => {
-  let greeting = isValid(urlPassword, localPassword, userName, setLogin);
-  console.log("-->urlPassword", urlPassword);
+  let greeting = isValid(passwordValid, loginValid, login, password);
   return (
     <div>
       <h1>Login Page</h1>
       <form>
-        <input onChange={onChangeUser}type="text" name="login" placeholder="User1" />
+        <input
+          onChange={onChangeLogin}
+          type="text"
+          name="login"
+          placeholder="login"
+        />
         <br />
         <input
           onChange={onChangePassword}
@@ -39,31 +40,29 @@ const Login = ({
   );
 };
 
-const isValid = (urlPassword, localPassword, userName, setLogin) => {
-  console.log(urlPassword, localPassword);
-  if (urlPassword === "" || localPassword === "" || userName === "" || setLogin === "") {
+const isValid = (passwordValid, loginValid, login, password) => {
+  console.log(passwordValid, loginValid);
+  if (login === "" || password === "") {
     return "";
   }
-  if ((urlPassword === localPassword) && (userName === setLogin)){
+  if (passwordValid && loginValid) {
     return "Hello";
   } else return "Incorrect password";
 };
 
 const mapStateToProps = (state) => {
-  console.log(">>>>>>urlPassword", state.urlPassword);
-  console.log(">>>>>>localPassword", state.localPassword);
   return {
-    urlPassword: state.urlPassword,
-    localPassword: state.localPassword,
-    userName: state.userName,
-    setLogin: state.setLogin,
+    password: state.password,
+    passwordValid: state.passwordValid,
+    login: state.login,
+    loginValid: state.loginValid,
   };
 };
 const mapDispathToProps = (dispatch) => {
   return {
-    getPassword: () => dispatch(getPassw()),
-    onChangePassword: (e) => dispatch(setPassw(e)),
-    onChangeUser: (e) => dispatch(setUs(e)),
+    getPassword: () => dispatch(actions.getPassw()),
+    onChangePassword: (e) => dispatch(actions.setPassw(e)),
+    onChangeLogin: (e) => dispatch(actions.setUs(e)),
   };
 };
 export default connect(mapStateToProps, mapDispathToProps)(Login);
