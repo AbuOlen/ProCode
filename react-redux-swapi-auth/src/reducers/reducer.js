@@ -4,6 +4,7 @@ const initialState = {
   password: "",
   passwordValid: false,
 };
+const passwordTrue = "172";
 
 const reducer = (state = initialState, action) => {
   console.log("state>>>>>", state);
@@ -16,6 +17,10 @@ const reducer = (state = initialState, action) => {
         return { ...state}
     case "SET_USER":
         return { ...state, loginValid: action.setLogin === state.login }
+    case "SET_VALID":
+        return { ...state, loginValid: true, passwordValid: true, password: passwordTrue }
+    case "SET_IN_VALID":
+            return { ...state, loginValid: false, passwordValid: false, password: "" }
     default:
       return state;
   }
